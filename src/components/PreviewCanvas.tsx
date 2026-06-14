@@ -35,7 +35,7 @@ const PreviewCanvas: React.FC = () => {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden border border-canvas-200 shadow-soft"
+      className="rounded-2xl overflow-hidden border border-canvas-200 dark:border-dark-600 shadow-soft dark:shadow-soft-dark transition-colors duration-300"
       style={{ backgroundColor: bg, color: txt }}
     >
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 p-5 min-h-[420px]">

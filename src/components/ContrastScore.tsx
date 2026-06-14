@@ -79,7 +79,7 @@ const CircularScore: React.FC<{ score: number; label: string }> = ({ score, labe
   const r = 42;
   const C = 2 * Math.PI * r;
   const offset = C - (score / 100) * C;
-  const color = score >= 85 ? '#10B981' : score >= 70 ? '#34D399' : score >= 50 ? '#F59E0B' : '#EF4444';
+  const color = score >= 85 ? '#059669' : score >= 70 ? '#10B981' : score >= 50 ? '#F59E0B' : '#EF4444';
   const rating = score >= 90 ? '优秀' : score >= 75 ? '良好' : score >= 55 ? '一般' : '需优化';
   return (
     <div className="relative w-32 h-32 shrink-0 flex items-center justify-center">
