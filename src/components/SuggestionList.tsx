@@ -19,20 +19,20 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
   const againstHex = colors[against];
 
   return (
-    <div className="border border-canvas-200 rounded-xl p-4">
+    <div className="border border-canvas-200 dark:border-dark-600 rounded-xl p-4 transition-colors duration-300">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span
             className="text-[11px] font-bold uppercase tracking-wider px-2 py-1 rounded-md border"
             style={{
               color: roleAccent,
-              borderColor: roleAccent + '50',
-              backgroundColor: roleAccent + '12',
+              borderColor: roleAccent + '60',
+              backgroundColor: roleAccent + '15',
             }}
           >
             {ROLE_LABEL[role]} 优化建议
           </span>
-          <span className="text-[10px] text-stone-500 font-mono">
+          <span className="text-[10px] text-stone-500 dark:text-dark-400 font-mono transition-colors duration-300">
             对比于 {ROLE_LABEL[against]} {againstHex}
           </span>
         </div>
@@ -49,19 +49,19 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
           return (
             <div
               key={idx}
-              className="group flex items-center gap-3 p-2 rounded-lg border border-canvas-100 hover:border-brand-300 hover:bg-brand-50/30 transition-all duration-150"
+              className="group flex items-center gap-3 p-2 rounded-lg border border-canvas-100 dark:border-dark-700 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-900/20 transition-all duration-150"
             >
               <div className="flex items-center gap-1 shrink-0">
                 <div
-                  className="w-8 h-8 rounded-md border border-canvas-200 shadow-sm flex items-center justify-center text-[9px] font-mono"
+                  className="w-8 h-8 rounded-md border border-canvas-200 dark:border-dark-600 shadow-sm dark:shadow-soft-dark flex items-center justify-center text-[9px] font-mono transition-colors duration-300"
                   style={{ backgroundColor: current }}
                   title={`原 ${current}`}
                 >
                   原
                 </div>
-                <ArrowRight size={12} className="text-stone-400" />
+                <ArrowRight size={12} className="text-stone-400 dark:text-dark-500 transition-colors duration-300" />
                 <div
-                  className="w-8 h-8 rounded-md border border-canvas-200 shadow-sm"
+                  className="w-8 h-8 rounded-md border border-canvas-200 dark:border-dark-600 shadow-sm dark:shadow-soft-dark transition-colors duration-300"
                   style={{ backgroundColor: s.hex }}
                   title={s.hex}
                 />
@@ -69,12 +69,12 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-mono text-xs font-bold text-stone-800">{s.hex}</span>
-                  <span className="font-mono text-[11px] text-stone-500 line-through opacity-60">
+                  <span className="font-mono text-xs font-bold text-stone-800 dark:text-stone-200 transition-colors duration-300">{s.hex}</span>
+                  <span className="font-mono text-[11px] text-stone-500 dark:text-dark-500 line-through opacity-60 transition-colors duration-300">
                     {current} ({currentContrast})
                   </span>
                   {improvedPct && (
-                    <span className="text-[10px] font-bold text-brand-600 bg-brand-50 border border-brand-200 px-1.5 py-0.5 rounded">
+                    <span className="text-[10px] font-bold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-800 px-1.5 py-0.5 rounded transition-colors duration-300">
                       {improvedPct}
                     </span>
                   )}
@@ -88,11 +88,11 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
                   </span>
                   <span
                     className="text-[9px] font-bold px-1.5 py-0.5 rounded border"
-                    style={{ color: levelC, borderColor: levelC + '40', backgroundColor: levelC + '10' }}
+                    style={{ color: levelC, borderColor: levelC + '60', backgroundColor: levelC + '15' }}
                   >
                     {level}
                   </span>
-                  <span className="text-[10px] text-stone-400 font-mono">
+                  <span className="text-[10px] text-stone-400 dark:text-dark-500 font-mono transition-colors duration-300">
                     Δ {(s.distance).toFixed(0)}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
 
               <button
                 onClick={() => onApply(s.hex)}
-                className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-semibold text-white bg-brand-500 hover:bg-brand-600 shadow-soft hover:-translate-y-0.5 transition-all"
+                className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-semibold text-white bg-brand-500 hover:bg-brand-600 shadow-soft dark:shadow-soft-dark hover:-translate-y-0.5 transition-all"
               >
                 <ThumbsUp size={12} /> 应用
               </button>
@@ -108,7 +108,7 @@ const RoleSection: React.FC<Props> = ({ role, against, suggestions, onApply, rol
           );
         })}
         {suggestions.length === 0 && (
-          <div className="text-center py-3 text-xs text-stone-500">
+          <div className="text-center py-3 text-xs text-stone-500 dark:text-dark-400 transition-colors duration-300">
             当前配色已达标，无需优化建议 ✨
           </div>
         )}
@@ -154,12 +154,12 @@ const SuggestionList: React.FC = () => {
   return (
     <div>
       <div className="flex items-center gap-2 mb-4">
-        <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-brand-700 bg-brand-50 border border-brand-200">
+        <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-brand-700 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-800 transition-colors duration-300">
           <Wand2 size={16} />
         </span>
         <div>
-          <h3 className="font-display font-semibold text-stone-800">智能替代建议</h3>
-          <p className="text-[11px] text-stone-500">
+          <h3 className="font-display font-semibold text-stone-800 dark:text-stone-100 transition-colors duration-300">智能替代建议</h3>
+          <p className="text-[11px] text-stone-500 dark:text-dark-400 transition-colors duration-300">
             基于相似度优先算法，寻找相近但对比度更高的替代色
           </p>
         </div>
@@ -167,9 +167,9 @@ const SuggestionList: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {sections.length === 0 ? (
-          <div className="col-span-full text-center py-8 rounded-xl bg-brand-50/50 border border-brand-200">
-            <div className="font-display text-xl font-bold text-brand-700 mb-1">🎉 完美！</div>
-            <p className="text-xs text-brand-600">
+          <div className="col-span-full text-center py-8 rounded-xl bg-brand-50/50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 transition-colors duration-300">
+            <div className="font-display text-xl font-bold text-brand-700 dark:text-brand-400 mb-1 transition-colors duration-300">🎉 完美！</div>
+            <p className="text-xs text-brand-600 dark:text-brand-500 transition-colors duration-300">
               当前所有颜色组合均已达到 WCAG 标准，没有需要优化的项
             </p>
           </div>

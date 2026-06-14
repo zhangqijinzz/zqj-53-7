@@ -44,6 +44,18 @@ export default {
           100: '#F5F5F4',
           200: '#E7E5E4',
           300: '#D6D3D1',
+        },
+        dark: {
+          50:  '#F8FAFC',
+          100: '#E2E8F0',
+          200: '#CBD5E1',
+          300: '#94A3B8',
+          400: '#64748B',
+          500: '#475569',
+          600: '#334155',
+          700: '#1E293B',
+          800: '#0F172A',
+          900: '#020617',
         }
       },
       borderRadius: {
@@ -52,6 +64,8 @@ export default {
       boxShadow: {
         'soft': '0 2px 12px -4px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04)',
         'lifted': '0 12px 40px -12px rgba(0,0,0,0.18), 0 4px 12px -4px rgba(0,0,0,0.08)',
+        'soft-dark': '0 2px 12px -4px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2)',
+        'lifted-dark': '0 12px 40px -12px rgba(0,0,0,0.5), 0 4px 12px -4px rgba(0,0,0,0.3)',
       },
       animation: {
         'float-in': 'floatIn 0.5s ease-out both',

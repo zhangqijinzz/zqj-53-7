@@ -5,10 +5,10 @@ import { evaluatePalette, getOverallLevel, levelColor, levelBadge, formatRatio, 
 
 const Badge: React.FC<{ pass: boolean; label: string }> = ({ pass, label }) => (
   <span
-    className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-[10px] font-semibold border transition-colors ${
+    className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-[10px] font-semibold border transition-colors duration-300 ${
       pass
-        ? 'bg-brand-50 text-brand-700 border-brand-200'
-        : 'bg-red-50 text-red-700 border-red-200'
+        ? 'bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 border-brand-200 dark:border-brand-800'
+        : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800'
     }`}
   >
     {pass ? <CheckCircle2 size={10} /> : <XCircle size={10} />}
@@ -21,21 +21,21 @@ const ContrastRow: React.FC<{ label: string; fg: string; bg: string; r: WcagResu
 }) => {
   const level = getOverallLevel(r);
   return (
-    <div className="flex items-center gap-3 py-2 border-b last:border-0 border-canvas-100">
+    <div className="flex items-center gap-3 py-2 border-b last:border-0 border-canvas-100 dark:border-dark-700 transition-colors duration-300">
       <div className="flex w-28 shrink-0 items-center gap-1.5">
-        {icon && <span className="text-stone-500">{icon}</span>}
-        <span className="text-[11px] font-medium text-stone-700">{label}</span>
+        {icon && <span className="text-stone-500 dark:text-dark-400 transition-colors duration-300">{icon}</span>}
+        <span className="text-[11px] font-medium text-stone-700 dark:text-dark-200 transition-colors duration-300">{label}</span>
       </div>
       <div className="flex gap-0.5 shrink-0">
         <div
-          className="w-6 h-6 rounded-md border border-canvas-200 shadow-sm flex items-center justify-center text-[8px] font-mono"
+          className="w-6 h-6 rounded-md border border-canvas-200 dark:border-dark-600 shadow-sm dark:shadow-soft-dark flex items-center justify-center text-[8px] font-mono transition-colors duration-300"
           style={{ backgroundColor: bg, color: fg }}
           title={`bg:${bg}`}
         >
           Aa
         </div>
         <div
-          className="w-6 h-6 rounded-md border border-canvas-200 -ml-1 shadow-sm"
+          className="w-6 h-6 rounded-md border border-canvas-200 dark:border-dark-600 -ml-1 shadow-sm dark:shadow-soft-dark transition-colors duration-300"
           style={{ backgroundColor: fg }}
           title={`fg:${fg}`}
         />
@@ -51,7 +51,7 @@ const ContrastRow: React.FC<{ label: string; fg: string; bg: string; r: WcagResu
           <Badge pass={r.normalAA} label="AA" />
           <Badge pass={r.normalAAA} label="AAA" />
         </div>
-        <div className="mt-1 h-1.5 bg-canvas-100 rounded-full overflow-hidden">
+        <div className="mt-1 h-1.5 bg-canvas-100 dark:bg-dark-700 rounded-full overflow-hidden transition-colors duration-300">
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{
@@ -65,8 +65,8 @@ const ContrastRow: React.FC<{ label: string; fg: string; bg: string; r: WcagResu
         className="shrink-0 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border"
         style={{
           color: levelColor(level),
-          borderColor: levelColor(level) + '40',
-          backgroundColor: levelColor(level) + '10',
+          borderColor: levelColor(level) + '60',
+          backgroundColor: levelColor(level) + '15',
         }}
       >
         {levelBadge(level)}
@@ -79,25 +79,25 @@ const CircularScore: React.FC<{ score: number; label: string }> = ({ score, labe
   const r = 42;
   const C = 2 * Math.PI * r;
   const offset = C - (score / 100) * C;
-  const color = score >= 85 ? '#059669' : score >= 70 ? '#10B981' : score >= 50 ? '#F59E0B' : '#DC2626';
+  const color = score >= 85 ? '#10B981' : score >= 70 ? '#34D399' : score >= 50 ? '#F59E0B' : '#EF4444';
   const rating = score >= 90 ? '优秀' : score >= 75 ? '良好' : score >= 55 ? '一般' : '需优化';
   return (
     <div className="relative w-32 h-32 shrink-0 flex items-center justify-center">
       <svg width="128" height="128" viewBox="0 0 128 128" className="-rotate-90">
-        <circle cx="64" cy="64" r={r} stroke="#F5F5F4" strokeWidth="8" fill="none" />
+        <circle cx="64" cy="64" r={r} className="stroke-canvas-100 dark:stroke-dark-700 transition-colors duration-300" strokeWidth="8" fill="none" />
         <circle
           cx="64" cy="64" r={r}
           stroke={color} strokeWidth="8" fill="none"
           strokeDasharray={C} strokeDashoffset={offset}
           strokeLinecap="round"
-          style={{ transition: 'stroke-dashoffset 0.6s ease' }}
+          style={{ transition: 'stroke-dashoffset 0.6s ease, stroke 0.3s ease', filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.1))' }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div className="font-display font-bold text-3xl" style={{ color }}>
+        <div className="font-display font-bold text-3xl" style={{ color, textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
           {score.toFixed(0)}
         </div>
-        <div className="text-[10px] font-semibold text-stone-500 mt-0.5 uppercase tracking-wider">
+        <div className="text-[10px] font-semibold text-stone-500 dark:text-dark-400 mt-0.5 uppercase tracking-wider transition-colors duration-300">
           {rating} · {label}
         </div>
       </div>

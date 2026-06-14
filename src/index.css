@@ -6,9 +6,7 @@
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light;
-  color: #292524;
-  background-color: #FAFAF9;
+  color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,18 +21,36 @@ html, body, #root {
   height: 100%;
 }
 
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 body {
   margin: 0;
   background-color: #FAFAF9;
+  color: #292524;
   background-image:
     radial-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
     radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px);
   background-size: 32px 32px, 48px 48px;
   background-position: 0 0, 16px 16px;
+  transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+}
+
+html.dark body {
+  background-color: #0F172A;
+  color: #E2E8F0;
+  background-image:
+    radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+    radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px);
 }
 
 ::selection {
   background: rgba(16, 185, 129, 0.25);
+}
+
+html.dark ::selection {
+  background: rgba(16, 185, 129, 0.35);
 }
 
 /* custom range slider */
@@ -44,6 +60,10 @@ input[type="range"].nice-range {
   background: #e7e5e4;
   border-radius: 100px;
   outline: none;
+  transition: background 0.3s ease;
+}
+html.dark input[type="range"].nice-range {
+  background: #334155;
 }
 input[type="range"].nice-range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -53,6 +73,9 @@ input[type="range"].nice-range::-webkit-slider-thumb {
   border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
   cursor: pointer;
+}
+html.dark input[type="range"].nice-range::-webkit-slider-thumb {
+  border-color: #1E293B;
 }
 
 /* hide native color picker outline */
@@ -71,5 +94,15 @@ input[type="color"].color-swatch::-webkit-color-swatch { border: none; border-ra
 /* scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; transition: background 0.3s ease; }
 ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+html.dark ::-webkit-scrollbar-thumb { background: #475569; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #64748B; }
+
+/* Smooth transition for all theme-related properties */
+.bg-canvas-50, .bg-canvas-100, .bg-canvas-200, .bg-white,
+.text-stone-500, .text-stone-600, .text-stone-700, .text-stone-800,
+.border-canvas-100, .border-canvas-200, .border-canvas-300 {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

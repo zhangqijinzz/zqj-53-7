@@ -34,12 +34,12 @@ const PaletteGrid: React.FC = () => {
     <div className="space-y-4">
       <div>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 dark:text-dark-400 transition-colors duration-300">
             <Palette size={12} className="inline -mt-0.5 mr-1" />
             快速选色
           </span>
-          <span className="text-[11px] text-stone-400 font-mono">
-            作用于：<span className="text-brand-600 font-semibold">{activeColorRole}</span>
+          <span className="text-[11px] text-stone-400 dark:text-dark-500 font-mono transition-colors duration-300">
+            作用于：<span className="text-brand-600 dark:text-brand-400 font-semibold transition-colors duration-300">{activeColorRole}</span>
           </span>
         </div>
         <div className="grid grid-cols-8 md:grid-cols-12 gap-1.5">
@@ -50,8 +50,8 @@ const PaletteGrid: React.FC = () => {
                 key={c}
                 type="button"
                 onClick={() => setColor(activeColorRole, c)}
-                className={`aspect-square rounded-lg transition-all duration-150 hover:scale-110 hover:shadow-md relative ${
-                  isActive ? 'ring-2 ring-brand-500 ring-offset-2 scale-105' : ''
+                className={`aspect-square rounded-lg transition-all duration-150 hover:scale-110 hover:shadow-md dark:hover:shadow-soft-dark relative ring-offset-white dark:ring-offset-dark-800 ${
+                  isActive ? 'ring-2 ring-brand-500 scale-105' : ''
                 }`}
                 style={{ backgroundColor: c }}
                 title={c}
@@ -63,7 +63,7 @@ const PaletteGrid: React.FC = () => {
 
       <div>
         <div className="flex items-center mb-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 dark:text-dark-400 transition-colors duration-300">
             预设方案
           </span>
         </div>
@@ -73,15 +73,15 @@ const PaletteGrid: React.FC = () => {
               key={p.name}
               type="button"
               onClick={() => applyPalette(p)}
-              className="group relative rounded-xl border border-canvas-200 p-2 hover:border-brand-300 hover:shadow-soft transition-all duration-150 text-left"
+              className="group relative rounded-xl border border-canvas-200 dark:border-dark-600 p-2 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-soft dark:hover:shadow-soft-dark transition-all duration-150 text-left"
             >
               <div className="flex h-9 rounded-md overflow-hidden mb-2">
                 <div style={{ backgroundColor: p.p }} className="flex-1" />
                 <div style={{ backgroundColor: p.s }} className="flex-1" />
-                <div style={{ backgroundColor: p.b, borderLeft: '1px solid #e7e5e4', borderRight: '1px solid #e7e5e4' }} className="flex-1" />
+                <div style={{ backgroundColor: p.b, borderLeft: '1px solid rgba(0,0,0,0.1)', borderRight: '1px solid rgba(0,0,0,0.1)' }} className="flex-1" />
                 <div style={{ backgroundColor: p.t }} className="flex-1" />
               </div>
-              <div className="text-xs font-medium text-stone-700 group-hover:text-brand-700 transition-colors">
+              <div className="text-xs font-medium text-stone-700 dark:text-dark-200 group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors duration-300">
                 {p.name}
               </div>
             </button>

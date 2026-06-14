@@ -61,15 +61,15 @@ const ColorInput: React.FC<Props> = ({ role }) => {
       onKeyDown={(e) => { if (e.key === 'Enter') setActiveRole(role); }}
       className={`group relative flex flex-col rounded-xl border-2 p-3 text-left transition-all duration-200 ${
         isActive
-          ? 'border-brand-500 shadow-lifted -translate-y-0.5'
-          : 'border-canvas-200 hover:border-canvas-300 hover:shadow-soft hover:-translate-y-0.5'
+          ? 'border-brand-500 shadow-lifted dark:shadow-lifted-dark -translate-y-0.5'
+          : 'border-canvas-200 dark:border-dark-600 hover:border-canvas-300 dark:hover:border-dark-500 hover:shadow-soft dark:hover:shadow-soft-dark hover:-translate-y-0.5'
       }`}
     >
       <div className="flex items-center justify-between mb-2">
-        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium tracking-wider uppercase ${
+        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium tracking-wider uppercase transition-colors duration-300 ${
           isActive
             ? 'bg-brand-500 text-white'
-            : 'bg-canvas-100 text-stone-600'
+            : 'bg-canvas-100 dark:bg-dark-700 text-stone-600 dark:text-dark-300'
         }`}>
           {ROLE_LABEL[role]}
         </span>
@@ -108,10 +108,10 @@ const ColorInput: React.FC<Props> = ({ role }) => {
       </div>
 
       <div className="relative">
-        <div className={`flex items-center gap-1 rounded-md border px-2 py-1.5 bg-canvas-50 transition-colors ${
-          !isValid ? 'border-red-300 bg-red-50' : isActive ? 'border-brand-300' : 'border-canvas-200'
+        <div className={`flex items-center gap-1 rounded-md border px-2 py-1.5 bg-canvas-50 dark:bg-dark-900 transition-colors duration-300 ${
+          !isValid ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/30' : isActive ? 'border-brand-300 dark:border-brand-700' : 'border-canvas-200 dark:border-dark-600'
         }`}>
-          <span className="text-xs font-mono text-stone-500 select-none">#</span>
+          <span className="text-xs font-mono text-stone-500 dark:text-dark-400 select-none transition-colors duration-300">#</span>
           <input
             type="text"
             value={input}
@@ -120,7 +120,7 @@ const ColorInput: React.FC<Props> = ({ role }) => {
             onClick={(e) => e.stopPropagation()}
             spellCheck={false}
             maxLength={6}
-            className="flex-1 bg-transparent outline-none text-sm font-mono font-semibold text-stone-800 uppercase tracking-wider"
+            className="flex-1 bg-transparent outline-none text-sm font-mono font-semibold text-stone-800 dark:text-stone-200 uppercase tracking-wider transition-colors duration-300"
             placeholder="HEX"
           />
           {!isValid && <AlertTriangle size={14} className="text-red-500" />}
